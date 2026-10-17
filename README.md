@@ -20,12 +20,21 @@ node ≥20, pnpm 11, php 8.5, composer 2.8.
 
 ## Dev
 ```bash
+docker compose up -d         # postgres :5432, redis :6380
+
 pnpm install                 # install JS deps + link workspace
 pnpm dev                     # dashboard :3000 + storefront :3001 (turbo)
 
 # API (separate)
-cd apps/api && php artisan serve   # :8000
+cd apps/api
+cp .env.example .env && php artisan key:generate   # first time
+php artisan migrate
+php artisan serve            # :8000  (docs at /docs/api — Scramble OpenAPI)
+php artisan horizon         # queue worker (separate terminal)
 ```
+
+Services: Postgres + Redis via `docker-compose.yml` (redis on host **6380** to avoid
+a collision with another local redis). API runs on host against the exposed ports.
 
 ## Build / lint / test
 ```bash
@@ -35,5 +44,6 @@ pnpm test
 ```
 
 ## Status
-Scaffold (#0.1) done. Next: #0.2 Laravel Sanctum+Postgres+Horizon, #0.3 farm-scoped schema.
+#0.1 scaffold + #0.2 (Sanctum, Postgres, Redis, Horizon, Scramble OpenAPI, docker-compose) done.
+Next: #0.3 farm-scoped schema (`account → farm`, every row `farm_id`).
 See ISSUES.md for backlog.
