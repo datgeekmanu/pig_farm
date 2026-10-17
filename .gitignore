@@ -1,0 +1,31 @@
+# deps
+node_modules/
+vendor/
+
+# builds
+.next/
+dist/
+out/
+build/
+.turbo/
+
+# env
+.env
+.env.*
+!.env.example
+
+# laravel
+/apps/api/public/storage
+/apps/api/storage/*.key
+/apps/api/storage/framework/cache/*
+/apps/api/storage/framework/sessions/*
+/apps/api/storage/framework/views/*
+/apps/api/storage/logs/*
+/apps/api/bootstrap/cache/*
+
+# misc
+.DS_Store
+*.log
+coverage/
+.idea/
+.vscode/

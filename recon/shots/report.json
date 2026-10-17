@@ -1,0 +1,624 @@
+{
+  "accueil": {
+    "route": "/app",
+    "headings": [
+      "Ferme de John Doe",
+      "Bonsoir, Ferme de John Doe — Samedi 17 octobre 2026",
+      "Courbe de croissance",
+      "Créer une formule",
+      "Mes Porcs",
+      "Reproduction",
+      "Stocks d'aliments",
+      "Finances"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Affichage",
+      "Activer mon compte",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [],
+    "selects": []
+  },
+  "mes-porcs": {
+    "route": "/app/mes-porcs",
+    "headings": [
+      "Ferme de John Doe",
+      "Mes Porcs",
+      "Lots (Bandes d'engraissement)",
+      "Suivi Individuel",
+      "Poids Moy.",
+      "Mortalité",
+      "Densité & Homogénéité"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [],
+    "selects": []
+  },
+  "reproduction": {
+    "route": "/app/reproduction",
+    "headings": [
+      "Ferme de John Doe",
+      "Reproduction",
+      "Suivi Individuel",
+      "Suivi collectif truies",
+      "Gestation",
+      "Maternité",
+      "GTTT — Troupeau de truies",
+      "Truies Vides",
+      "Fiches reproducteurs",
+      "Planification bandes"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [],
+    "selects": []
+  },
+  "formulation": {
+    "route": "/app/formulation",
+    "headings": [
+      "Ferme de John Doe",
+      "Module Formulation",
+      "Créer une formule",
+      "Formule Économique",
+      "Professionnel",
+      "Formulation Manuelle",
+      "Analyse",
+      "Mes Formules",
+      "Historique Calculs"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Économique",
+      "Mode Pro",
+      "Mode Manuel",
+      "Analyser",
+      "0 formule(s)",
+      "Voir l'historique",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [],
+    "selects": []
+  },
+  "stocks": {
+    "route": "/app/stocks",
+    "headings": [
+      "Ferme de John Doe",
+      "Gestion des Stocks"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Ajouter",
+      "🌾 Alimentation",
+      "💊 Vétérinaire",
+      "📋 Historique",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "🌾 Alimentation",
+      "💊 Vétérinaire",
+      "📋 Historique",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Rechercher un produit...",
+        "label": ""
+      }
+    ],
+    "selects": []
+  },
+  "treatments": {
+    "route": "/app/treatments",
+    "headings": [
+      "Ferme de John Doe",
+      "Traitements & Prophylaxie"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Lots",
+      "Individuels",
+      "Prophylaxie",
+      "Ajouter traitement lot",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Lots",
+      "Individuels",
+      "Prophylaxie",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [],
+    "selects": []
+  },
+  "salaries": {
+    "route": "/app/salaries",
+    "headings": [
+      "Ferme de John Doe",
+      "Salaires"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Ajouter",
+      "octobre 2026",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [],
+    "selects": []
+  },
+  "sales": {
+    "route": "/app/sales",
+    "headings": [
+      "Ferme de John Doe",
+      "Ventes",
+      "Historique des ventes"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Nouvelle vente",
+      "Tout",
+      "Tous les mois",
+      "Paramètres",
+      "Exporter",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [],
+    "selects": []
+  },
+  "expenses": {
+    "route": "/app/expenses",
+    "headings": [
+      "Ferme de John Doe",
+      "Dépenses",
+      "Total Dépenses",
+      "Répartition par catégorie",
+      "Liste des dépenses"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Ajouter une dépense",
+      "Toutes les catégories",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [],
+    "selects": []
+  },
+  "finances": {
+    "route": "/app/finances",
+    "headings": [
+      "Ferme de John Doe",
+      "Finances",
+      "Vue d'ensemble",
+      "Ventes",
+      "Commandes",
+      "Dépenses",
+      "Historique Dépenses",
+      "Budget prévisionnel",
+      "Amortissements",
+      "Salaires"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [],
+    "selects": []
+  },
+  "finances-overview": {
+    "route": "/app/finances/overview",
+    "headings": [
+      "Ferme de John Doe",
+      "Dashboard Finances",
+      "Chiffre d'affaires",
+      "Dépenses Totales",
+      "Bénéfice Brut",
+      "Évolution mensuelle",
+      "Répartition des dépenses",
+      "Bénéfice par mois",
+      "Détail des dépenses par catégorie"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Périodes",
+      "Par mois",
+      "1 an",
+      "Historique",
+      "PDF",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [],
+    "selects": []
+  },
+  "settings-team": {
+    "route": "/app/settings/team",
+    "headings": [
+      "Ferme de John Doe",
+      "Gestion de l'équipe",
+      "Membres de l'équipe"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Ajouter un membre",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [
+      "Membre",
+      "Niveau d'accès",
+      "Depuis",
+      "Actions"
+    ],
+    "formFields": [],
+    "selects": []
+  },
+  "settings-notifications": {
+    "route": "/app/settings/notifications",
+    "headings": [
+      "Ferme de John Doe",
+      "Notifications"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [],
+    "selects": []
+  },
+  "settings-farm": {
+    "route": "/app/settings/farm",
+    "headings": [
+      "Ferme de John Doe",
+      "Paramètres de la Ferme",
+      "Logo de la Ferme",
+      "Informations de la Ferme",
+      "Seuil de rentabilité",
+      "Couleur du reçu",
+      "Devise",
+      "Notifications",
+      "Aperçu de l'en-tête de facture",
+      "Nom de votre ferme"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Ajouter un logo",
+      "Bleu",
+      "Vert",
+      "Or",
+      "Rouge",
+      "Violet",
+      "Ardoise",
+      "Réinitialiser",
+      "notifications.configure",
+      "Sauvegarder les paramètres",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [
+      {
+        "t": "input",
+        "type": "file",
+        "name": "",
+        "ph": "",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "farm_name",
+        "ph": "Ex: Ferme Agricole Dupont",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "farm_phone",
+        "ph": "Ex: +225 07 00 00 00 00",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "email",
+        "name": "farm_email",
+        "ph": "Ex: contact@maferme.com",
+        "label": ""
+      },
+      {
+        "t": "textarea",
+        "type": "textarea",
+        "name": "farm_address",
+        "ph": "Ex: Quartier X, Ville Y, Pays",
+        "label": ""
+      },
+      {
+        "t": "textarea",
+        "type": "textarea",
+        "name": "payment_info",
+        "ph": "Ex: Mobile Money: +225 07 00 00 00 00\nBanque: XXXX - Compte: 0000000000",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "color",
+        "name": "",
+        "ph": "",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "#2980B9",
+        "label": ""
+      }
+    ],
+    "selects": []
+  },
+  "account": {
+    "route": "/app/account",
+    "headings": [
+      "Ferme de John Doe",
+      "Mon compte",
+      "Changer le mot de passe",
+      "Réinitialiser ma ferme",
+      "Supprimer mon compte"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Mettre à jour le mot de passe",
+      "Réinitialiser ma ferme",
+      "Supprimer mon compte",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [
+      {
+        "t": "input",
+        "type": "password",
+        "name": "",
+        "ph": "",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "password",
+        "name": "",
+        "ph": "",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "password",
+        "name": "",
+        "ph": "",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "SUPPRIMER",
+        "label": ""
+      }
+    ],
+    "selects": []
+  },
+  "referral": {
+    "route": "/app/referral",
+    "headings": [
+      "Ferme de John Doe",
+      "Parrainage",
+      "Conditions du programme",
+      "Votre code de parrainage",
+      "Mes gains estimés",
+      "Comment ça marche ?",
+      "Mes filleuls"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Copier le lien de parrainage",
+      "Récupérer mes gains",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [],
+    "selects": []
+  },
+  "tutoriels": {
+    "route": "/app/tutoriels",
+    "headings": [
+      "Ferme de John Doe",
+      "Centre de formation",
+      "Formation complète de Afaporc au besoin",
+      "Suivi en engraissement avec Afaporc",
+      "Suivi individuel avec Afaporc",
+      "Gestion de la reproduction : gestation, saillie, mise bas",
+      "Créer les formules alimentaires avec Afaporc",
+      "Finances avec Afaporc : salaires, amortissements, ventes",
+      "Suivi en bande des truies",
+      "Analyse des données en élevage",
+      "Formation complète sur téléphone",
+      "Coût de production du porcelet sevré",
+      "Playlist complète sur YouTube"
+    ],
+    "buttons": [
+      "Reproduction",
+      "Finances",
+      "Déconnexion",
+      "🇪🇺\n€",
+      "🇫🇷 Français",
+      "Menu"
+    ],
+    "tabs": [
+      "Reproduction",
+      "Finances",
+      "Menu"
+    ],
+    "tableHeaders": [],
+    "formFields": [],
+    "selects": []
+  }
+}

@@ -1,0 +1,1221 @@
+{
+  "lot-create": {
+    "route": "/app/mes-porcs",
+    "clicked": [
+      "Lots",
+      "Nouveau"
+    ],
+    "url": "https://afaporc.com/app/lots",
+    "scope": "[role=dialog]",
+    "dialogTitle": [
+      "Créer un nouveau lot"
+    ],
+    "labels": [
+      "Nom du lot *",
+      "Bâtiment / Loge",
+      "Date de mise en lot *",
+      "Effectif initial *",
+      "Date de naissance des porcs (optionnel)",
+      "Poids moyen initial (kg)",
+      "Prix d'achat unitaire (€/porc)",
+      "Notes (optionnel)",
+      "Pères (verrats)",
+      "Mères (truies)"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: Lot 2024-A",
+        "label": "Nom du lot *"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: Bâtiment 1 - Loge 3",
+        "label": "Bâtiment / Loge"
+      },
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date de mise en lot *"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "Ex: 20",
+        "label": "Effectif initial *"
+      },
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date de naissance des porcs (optionnel)"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "Ex: 25",
+        "label": "Poids moyen initial (kg)"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: 25000",
+        "label": "Prix d'achat unitaire (€/porc)"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Notes sur le lot",
+        "label": "Notes (optionnel)"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Rechercher par identifiant ou nom...",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ajouter un nom manuellement",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Rechercher par identifiant ou nom...",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ajouter un nom manuellement",
+        "label": ""
+      }
+    ]
+  },
+  "pig-create": {
+    "route": "/app/mes-porcs",
+    "clicked": [
+      "Suivi Individuel",
+      "Ajouter"
+    ],
+    "url": "https://afaporc.com/app/tracking",
+    "scope": "[role=dialog]",
+    "dialogTitle": [
+      "Nouveau Porc"
+    ],
+    "labels": [
+      "Père",
+      "Mère",
+      "Identifiant *",
+      "Nom (optionnel)",
+      "Sexe",
+      "Date de naissance",
+      "Date d'arrivée",
+      "Date inconnue",
+      "Poids arrivée (kg) *",
+      "Prix d'achat (€)",
+      "Catégorie",
+      "Valeur de réforme (€) — facultatif",
+      "Provenance",
+      "Notes"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Rechercher par identifiant ou nom...",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ou nom du père manuellement",
+        "label": "Aucun porc disponible"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Rechercher par identifiant ou nom...",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ou nom de la mère manuellement",
+        "label": "Aucun porc disponible"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: P001",
+        "label": "Identifiant *"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: Hercule",
+        "label": "Nom (optionnel)"
+      },
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date de naissance"
+      },
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date d'arrivée"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "Ex: 25",
+        "label": "Poids arrivée (kg) *"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "Ex: 15000",
+        "label": "Prix d'achat (€)"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "Ex. 100000",
+        "label": "Valeur de réforme (€) — facultatif"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: Élevage Dupont",
+        "label": "Provenance"
+      },
+      {
+        "t": "textarea",
+        "type": "textarea",
+        "name": "",
+        "ph": "Notes supplémentaires...",
+        "label": "Notes"
+      }
+    ]
+  },
+  "mortality-create": {
+    "route": "/app/mes-porcs",
+    "clicked": [
+      "Mortalité"
+    ],
+    "url": "https://afaporc.com/app/mortality",
+    "scope": "body",
+    "dialogTitle": [
+      "Ferme de John Doe",
+      "Suivi de la Mortalité",
+      "Total décès",
+      "Lots",
+      "Porcs",
+      "Taux — lots"
+    ],
+    "labels": [
+      "Date début",
+      "Date fin",
+      "Cause"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date début"
+      },
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date fin"
+      }
+    ]
+  },
+  "repro-gestation": {
+    "route": "/app/reproduction",
+    "clicked": [
+      "Gestation",
+      "Saillie"
+    ],
+    "url": "https://afaporc.com/app/gestation",
+    "scope": "body",
+    "dialogTitle": [
+      "Ferme de John Doe",
+      "Calculateur de Gestation"
+    ],
+    "labels": [],
+    "fields": [
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Rechercher par numéro de boucle ou nom",
+        "label": ""
+      }
+    ]
+  },
+  "repro-maternite": {
+    "route": "/app/reproduction",
+    "clicked": [
+      "Maternité"
+    ],
+    "url": "https://afaporc.com/app/reproduction",
+    "scope": "body",
+    "dialogTitle": [
+      "Ferme de John Doe",
+      "Reproduction",
+      "Suivi Individuel",
+      "Suivi collectif truies",
+      "Gestation",
+      "Maternité"
+    ],
+    "labels": [],
+    "fields": []
+  },
+  "repro-fiches": {
+    "route": "/app/reproduction",
+    "clicked": [
+      "Fiches reproducteurs"
+    ],
+    "url": "https://afaporc.com/app/reproduction",
+    "scope": "body",
+    "dialogTitle": [
+      "Ferme de John Doe",
+      "Reproduction",
+      "Suivi Individuel",
+      "Suivi collectif truies",
+      "Gestation",
+      "Maternité"
+    ],
+    "labels": [],
+    "fields": []
+  },
+  "repro-suivi-indiv": {
+    "route": "/app/reproduction",
+    "clicked": [
+      "Suivi Individuel",
+      "Ajouter"
+    ],
+    "url": "https://afaporc.com/app/tracking",
+    "scope": "[role=dialog]",
+    "dialogTitle": [
+      "Nouveau Porc"
+    ],
+    "labels": [
+      "Père",
+      "Mère",
+      "Identifiant *",
+      "Nom (optionnel)",
+      "Sexe",
+      "Date de naissance",
+      "Date d'arrivée",
+      "Date inconnue",
+      "Poids arrivée (kg) *",
+      "Prix d'achat (€)",
+      "Catégorie",
+      "Valeur de réforme (€) — facultatif",
+      "Provenance",
+      "Notes"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Rechercher par identifiant ou nom...",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ou nom du père manuellement",
+        "label": "Aucun porc disponible"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Rechercher par identifiant ou nom...",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ou nom de la mère manuellement",
+        "label": "Aucun porc disponible"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: P001",
+        "label": "Identifiant *"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: Hercule",
+        "label": "Nom (optionnel)"
+      },
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date de naissance"
+      },
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date d'arrivée"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "Ex: 25",
+        "label": "Poids arrivée (kg) *"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "Ex: 15000",
+        "label": "Prix d'achat (€)"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "Ex. 100000",
+        "label": "Valeur de réforme (€) — facultatif"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: Élevage Dupont",
+        "label": "Provenance"
+      },
+      {
+        "t": "textarea",
+        "type": "textarea",
+        "name": "",
+        "ph": "Notes supplémentaires...",
+        "label": "Notes"
+      }
+    ]
+  },
+  "form-manuel": {
+    "route": "/app/formulation",
+    "clicked": [
+      "Mode Manuel"
+    ],
+    "url": "https://afaporc.com/app/formulation/manual",
+    "scope": "body",
+    "dialogTitle": [
+      "Ferme de John Doe",
+      "Formulation Manuelle",
+      "Matières Premières"
+    ],
+    "labels": [
+      "Nom de la formule",
+      "Phase physiologique"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Nom de la formule",
+        "label": "Nom de la formule"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Rechercher un ingrédient...",
+        "label": ""
+      }
+    ]
+  },
+  "form-economique": {
+    "route": "/app/formulation",
+    "clicked": [
+      "Économique"
+    ],
+    "url": "https://afaporc.com/app/formulation/automatic?mode=lp",
+    "scope": "body",
+    "dialogTitle": [
+      "Ferme de John Doe",
+      "Formulation Automatique"
+    ],
+    "labels": [
+      "Nom de la formule",
+      "Poids total (kg)",
+      "Phase physiologique"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ma formule",
+        "label": "Nom de la formule"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "100",
+        "label": "Poids total (kg)"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Rechercher un ingrédient...",
+        "label": ""
+      }
+    ]
+  },
+  "form-analyse": {
+    "route": "/app/formulation",
+    "clicked": [
+      "Analyser"
+    ],
+    "url": "https://afaporc.com/app/analyze",
+    "scope": "body",
+    "dialogTitle": [
+      "Ferme de John Doe",
+      "Analyse des Formules",
+      "Phase physiologique",
+      "Votre Formule"
+    ],
+    "labels": [
+      "Qté (kg)",
+      "Prix/kg"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "0",
+        "label": "Qté (kg)"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "0",
+        "label": "Prix/kg"
+      }
+    ]
+  },
+  "stock-alim": {
+    "route": "/app/stocks",
+    "clicked": [
+      "🌾 Alimentation",
+      "Ajouter"
+    ],
+    "url": "https://afaporc.com/app/stocks",
+    "scope": "[role=dialog]",
+    "dialogTitle": [
+      "Ajouter un produit"
+    ],
+    "labels": [
+      "Nom *",
+      "Catégorie",
+      "Quantité",
+      "Date",
+      "Unité",
+      "Seuil d'alerte",
+      "Prix unitaire (€)",
+      "Notes"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: Maïs, Ivermectine...",
+        "label": "Nom *"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "",
+        "label": "Quantité"
+      },
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "Optionnel",
+        "label": "Seuil d'alerte"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "Optionnel",
+        "label": "Prix unitaire (€)"
+      },
+      {
+        "t": "textarea",
+        "type": "textarea",
+        "name": "",
+        "ph": "",
+        "label": "Notes"
+      }
+    ]
+  },
+  "stock-vet": {
+    "route": "/app/stocks",
+    "clicked": [
+      "💊 Vétérinaire",
+      "Ajouter"
+    ],
+    "url": "https://afaporc.com/app/stocks",
+    "scope": "[role=dialog]",
+    "dialogTitle": [
+      "Ajouter un produit"
+    ],
+    "labels": [
+      "Nom *",
+      "Catégorie",
+      "Quantité",
+      "Date",
+      "Unité",
+      "Seuil d'alerte",
+      "Prix unitaire (€)",
+      "Notes"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: Maïs, Ivermectine...",
+        "label": "Nom *"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "",
+        "label": "Quantité"
+      },
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "Optionnel",
+        "label": "Seuil d'alerte"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "Optionnel",
+        "label": "Prix unitaire (€)"
+      },
+      {
+        "t": "textarea",
+        "type": "textarea",
+        "name": "",
+        "ph": "",
+        "label": "Notes"
+      }
+    ]
+  },
+  "treat-lot": {
+    "route": "/app/treatments",
+    "clicked": [
+      "Lots",
+      "Ajouter traitement lot"
+    ],
+    "url": "https://afaporc.com/app/treatments",
+    "scope": "[role=dialog]",
+    "dialogTitle": [
+      "Nouveau traitement de lot"
+    ],
+    "labels": [
+      "Lot *",
+      "Date *",
+      "Coût total",
+      "Produit *",
+      "Dose",
+      "Soignant",
+      "Téléphone du soignant",
+      "Notes"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date *"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "0",
+        "label": "Coût total"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: Ivermectine",
+        "label": "Produit *"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: 1ml/10kg",
+        "label": "Dose"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Nom",
+        "label": "Soignant"
+      },
+      {
+        "t": "input",
+        "type": "tel",
+        "name": "",
+        "ph": "Téléphone",
+        "label": "Téléphone du soignant"
+      },
+      {
+        "t": "textarea",
+        "type": "textarea",
+        "name": "",
+        "ph": "Observations...",
+        "label": "Notes"
+      }
+    ]
+  },
+  "treat-indiv": {
+    "route": "/app/treatments",
+    "clicked": [
+      "Individuels",
+      "Ajouter"
+    ],
+    "url": "https://afaporc.com/app/treatments",
+    "scope": "[role=dialog]",
+    "dialogTitle": [
+      "Nouveau traitement individuel"
+    ],
+    "labels": [
+      "Porc *",
+      "Date *",
+      "Type *",
+      "Produit *",
+      "Dose",
+      "Soignant",
+      "Téléphone du soignant",
+      "Motif",
+      "Coût ({{currency}})",
+      "Date de rappel",
+      "Notes"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date *"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: Ivermectine",
+        "label": "Produit *"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: 1ml",
+        "label": "Dose"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Nom",
+        "label": "Soignant"
+      },
+      {
+        "t": "input",
+        "type": "tel",
+        "name": "",
+        "ph": "Téléphone",
+        "label": "Téléphone du soignant"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Raison du traitement",
+        "label": "Motif"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "0",
+        "label": "Coût ({{currency}})"
+      },
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date de rappel"
+      },
+      {
+        "t": "textarea",
+        "type": "textarea",
+        "name": "",
+        "ph": "Observations...",
+        "label": "Notes"
+      }
+    ]
+  },
+  "treat-prophy": {
+    "route": "/app/treatments",
+    "clicked": [
+      "Prophylaxie",
+      "Ajouter"
+    ],
+    "url": "https://afaporc.com/app/treatments",
+    "scope": "[role=dialog]",
+    "dialogTitle": [
+      "Nouveau traitement de lot"
+    ],
+    "labels": [
+      "Lot *",
+      "Date *",
+      "Coût total",
+      "Produit *",
+      "Dose",
+      "Soignant",
+      "Téléphone du soignant",
+      "Notes"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date *"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "0",
+        "label": "Coût total"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: Ivermectine",
+        "label": "Produit *"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: 1ml/10kg",
+        "label": "Dose"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Nom",
+        "label": "Soignant"
+      },
+      {
+        "t": "input",
+        "type": "tel",
+        "name": "",
+        "ph": "Téléphone",
+        "label": "Téléphone du soignant"
+      },
+      {
+        "t": "textarea",
+        "type": "textarea",
+        "name": "",
+        "ph": "Observations...",
+        "label": "Notes"
+      }
+    ]
+  },
+  "salary-create": {
+    "route": "/app/salaries",
+    "clicked": [
+      "Ajouter"
+    ],
+    "url": "https://afaporc.com/app/salaries",
+    "scope": "[role=dialog]",
+    "dialogTitle": [
+      "Enregistrer un salaire"
+    ],
+    "labels": [
+      "Nom de l'ouvrier",
+      "Poste / Fonction",
+      "Montant",
+      "Date de paiement",
+      "Mois concerné",
+      "Notes"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "",
+        "label": "Nom de l'ouvrier"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "",
+        "label": "Montant"
+      },
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date de paiement"
+      },
+      {
+        "t": "select",
+        "type": "select-one",
+        "name": "",
+        "ph": "",
+        "label": "",
+        "opts": [
+          "octobre 2026",
+          "septembre 2026",
+          "août 2026",
+          "juillet 2026",
+          "juin 2026",
+          "mai 2026",
+          "avril 2026",
+          "mars 2026",
+          "février 2026",
+          "janvier 2026",
+          "décembre 2025",
+          "novembre 2025"
+        ]
+      },
+      {
+        "t": "textarea",
+        "type": "textarea",
+        "name": "",
+        "ph": "",
+        "label": "Notes"
+      }
+    ]
+  },
+  "sale-create": {
+    "route": "/app/sales",
+    "clicked": [
+      "Nouvelle vente"
+    ],
+    "url": "https://afaporc.com/app/sales",
+    "scope": "[role=dialog]",
+    "dialogTitle": [
+      "Nouvelle vente"
+    ],
+    "labels": [
+      "Date de vente",
+      "Articles de la vente",
+      "Type de porc",
+      "Quantité",
+      "Poids total (kg)",
+      "Prix/kg (€)",
+      "Âge (mois)",
+      "Remise (%)",
+      "Taxe (%)",
+      "Acheteur",
+      "Téléphone acheteur",
+      "Email acheteur",
+      "Mode de paiement",
+      "Statut paiement",
+      "Notes"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date de vente"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "",
+        "label": "Quantité"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: 450",
+        "label": "Poids total (kg)"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex: 1800",
+        "label": "Prix/kg (€)"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Optionnel",
+        "label": "Âge (mois)"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "0",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "0",
+        "label": ""
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Nom de l'acheteur",
+        "label": "Acheteur"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "+225 07 00 00 00 00",
+        "label": "Téléphone acheteur"
+      },
+      {
+        "t": "input",
+        "type": "email",
+        "name": "",
+        "ph": "acheteur@email.com",
+        "label": "Email acheteur"
+      },
+      {
+        "t": "textarea",
+        "type": "textarea",
+        "name": "",
+        "ph": "Remarques additionnelles...",
+        "label": "Notes"
+      }
+    ]
+  },
+  "expense-create": {
+    "route": "/app/expenses",
+    "clicked": [
+      "Ajouter une dépense"
+    ],
+    "url": "https://afaporc.com/app/expenses",
+    "scope": "[role=dialog]",
+    "dialogTitle": [
+      "Nouvelle dépense"
+    ],
+    "labels": [
+      "Date",
+      "Montant (€)",
+      "Catégorie",
+      "Description",
+      "Lot associé (optionnel)",
+      "Notes"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "date",
+        "name": "",
+        "ph": "",
+        "label": "Date"
+      },
+      {
+        "t": "input",
+        "type": "number",
+        "name": "",
+        "ph": "",
+        "label": "Montant (€)"
+      },
+      {
+        "t": "select",
+        "type": "select-one",
+        "name": "",
+        "ph": "",
+        "label": "",
+        "opts": [
+          "Alimentation",
+          "Sanitaire / Vétérinaire",
+          "Vétérinaire",
+          "Achat animaux",
+          "Achat porcelets",
+          "Équipement",
+          "Main d'œuvre",
+          "Énergie (eau, électricité)",
+          "Transport",
+          "Salaire",
+          "Autre"
+        ]
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Description de la dépense",
+        "label": "Description"
+      },
+      {
+        "t": "select",
+        "type": "select-one",
+        "name": "",
+        "ph": "",
+        "label": "",
+        "opts": [
+          "Aucun lot"
+        ]
+      },
+      {
+        "t": "textarea",
+        "type": "textarea",
+        "name": "",
+        "ph": "Notes supplémentaires...",
+        "label": "Notes"
+      }
+    ]
+  },
+  "team-create": {
+    "route": "/app/settings/team",
+    "clicked": [
+      "Ajouter un membre"
+    ],
+    "url": "https://afaporc.com/app/settings/team",
+    "scope": "[role=dialog]",
+    "dialogTitle": [
+      "Ajouter un membre"
+    ],
+    "labels": [
+      "Nom de la personne",
+      "Adresse email",
+      "Mot de passe que vous créez",
+      "Niveau d'accès de départ"
+    ],
+    "fields": [
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Ex. Kossi Ouvrier",
+        "label": "Nom de la personne"
+      },
+      {
+        "t": "input",
+        "type": "email",
+        "name": "",
+        "ph": "nom@exemple.com",
+        "label": "Adresse email"
+      },
+      {
+        "t": "input",
+        "type": "text",
+        "name": "",
+        "ph": "Au moins 8 caractères",
+        "label": "Mot de passe que vous créez"
+      }
+    ]
+  }
+}
