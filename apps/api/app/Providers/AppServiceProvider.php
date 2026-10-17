@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Support\CurrentFarm;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +12,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // One CurrentFarm per request (scoped = fresh per container lifecycle).
+        $this->app->scoped(CurrentFarm::class);
     }
 
     /**

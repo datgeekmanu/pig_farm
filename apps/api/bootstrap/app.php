@@ -19,6 +19,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->api(prepend: [
             ForceJsonResponse::class,
         ]);
+
+        // Attach to authenticated routes to activate farm scoping (after auth:sanctum).
+        $middleware->alias([
+            'farm' => \App\Http\Middleware\ResolveFarm::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

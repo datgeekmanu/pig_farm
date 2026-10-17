@@ -44,6 +44,14 @@ pnpm test
 ```
 
 ## Status
-#0.1 scaffold + #0.2 (Sanctum, Postgres, Redis, Horizon, Scramble OpenAPI, docker-compose) done.
-Next: #0.3 farm-scoped schema (`account → farm`, every row `farm_id`).
+#0.1 scaffold + #0.2 (Sanctum, Postgres, Redis, Horizon, Scramble, docker-compose) + #0.3 (farm-scoped schema) done.
+Next: #0.4 Next.js dashboard base (auth guard, i18n, shadcn).
 See ISSUES.md for backlog.
+
+### Multi-tenancy (farm scoping)
+`account → farm (1..n)`, `user ↔ farm` pivot (`role`). Tenant-owned models use the
+`BelongsToFarm` trait: a **fail-closed** `FarmScope` filters every query by the active
+farm and throws if none is set. `CurrentFarm` (request-scoped singleton) holds the
+active farm; `ResolveFarm` middleware (alias `farm`) sets it from `X-Farm-Id` after auth.
+Escape hatch for global queries: `Model::withoutGlobalScope(FarmScope::class)`.
+Seeded dev login: `owner@example.com` / `password`.
