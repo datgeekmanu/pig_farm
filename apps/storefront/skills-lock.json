@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "tailwind-best-practices": {
+      "source": "evilmartians/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/tailwind-best-practices/SKILL.md",
+      "computedHash": "88059303b4e6368a8e8bba34e7c74fb8d4e5b6762916d145853f521f6af91b2c"
+    }
+  }
+}
