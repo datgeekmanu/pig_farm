@@ -1,26 +1,266 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+/* Font Awesome in the base layer so Tailwind utilities (hidden, sizes…) win. */
+@import "@fortawesome/fontawesome-free/css/fontawesome.min.css" layer(base);
+@import "@fortawesome/fontawesome-free/css/solid.min.css" layer(base);
+@import "@fortawesome/fontawesome-free/css/regular.min.css" layer(base);
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
+/*
+ * Pig Farm design system tokens.
+ * Raw palette lives in :root / .dark; components only consume the
+ * semantic names exposed below (bg-primary, text-success, rounded-xl…).
+ */
 @theme inline {
+  /* Typography */
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-display);
+  --font-mono: var(--font-geist-mono);
+
+  --text-caption: 13px;
+  --text-caption--line-height: 18px;
+  --text-body: 15px;
+  --text-body--line-height: 20px;
+  --text-nav: 17px;
+  --text-nav--line-height: 24px;
+  --text-section: 22px;
+  --text-section--line-height: 28px;
+  --text-figure: 36px;
+  --text-figure--line-height: 40px;
+
+  /* Radii (fixed scale from the design system) */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 28px;
+
+  /* Elevation: floating layers only */
+  --shadow-popover: 0 8px 24px rgb(21 28 37 / 0.12), 0 2px 6px rgb(21 28 37 / 0.06);
+  --shadow-dialog: 0 24px 48px rgb(21 28 37 / 0.18), 0 4px 12px rgb(21 28 37 / 0.08);
+
+  /* Surfaces */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-hover-overlay: var(--hover-overlay);
+  --color-scrim: var(--scrim);
+
+  /* Actions */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-hover: var(--destructive-hover);
+
+  /* Brand accents */
+  --color-hero: var(--hero);
+  --color-hero-foreground: var(--hero-foreground);
+  --color-hero-muted: var(--hero-muted);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-brand: var(--forest);
+  --color-live: var(--switch-on);
+  --color-earth-soft: var(--earth-100);
+  --color-earth-strong: var(--earth-700);
+
+  /* Status (icon + text, no fill) */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+
+  /* Avatar fills for lots / sows / flows */
+  --color-avatar-petrol: var(--petrol-500);
+  --color-avatar-teal: var(--teal-500);
+  --color-avatar-forest: var(--forest-600);
+  --color-avatar-earth: var(--earth-500);
+  --color-avatar-neutral: var(--neutral-600);
+
+  /* Lines */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Charts */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar (forest widget panel) */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-tile: var(--sidebar-tile);
+  --color-sidebar-tile-hover: var(--sidebar-tile-hover);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-active: var(--sidebar-active);
+  --color-sidebar-track: var(--switch-track-dark);
+  /* shadcn sidebar primitives */
+  --color-sidebar-primary: var(--primary);
+  --color-sidebar-primary-foreground: var(--primary-foreground);
+  --color-sidebar-accent: var(--sidebar-tile);
+  --color-sidebar-accent-foreground: var(--sidebar-foreground);
+  --color-sidebar-ring: var(--ring);
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Brand palette (theme independent) */
+:root {
+  --forest: #0f2a22;
+  --forest-600: #1c4f3d;
+  --earth-100: #efe5da;
+  --earth-500: #8c6b50;
+  --earth-700: #5e4634;
+  --teal-500: #1e8c6e;
+  --petrol-500: #1f5d78;
+  --neutral-500: #8b918d;
+  --neutral-600: #5b6660;
+}
+
+/* Light theme */
+:root {
+  color-scheme: light;
+  --radius: 0.75rem;
+  --background: #f5f4f0;
+  --foreground: #14201b;
+  --card: #ffffff;
+  --card-foreground: #14201b;
+  --popover: #ffffff;
+  --popover-foreground: #14201b;
+  --primary: #15392d;
+  --primary-foreground: #ffffff;
+  --primary-hover: #0f2a22;
+  --secondary: #eae8e2;
+  --secondary-foreground: #26332d;
+  --secondary-hover: #e0ded7;
+  --muted: #efeee9;
+  --muted-foreground: #5b6660;
+  --accent: #efe5da;
+  --accent-foreground: #4a3626;
+  --highlight: #d0103f;
+  --highlight-foreground: #ffffff;
+  --hero: #8c6b50;
+  --hero-foreground: #ffffff;
+  --hero-muted: rgb(255 255 255 / 0.72);
+  --border: #dedcd5;
+  --input: #d6d4cc;
+  --ring: #2c6a52;
+  --destructive: #b4232d;
+  --destructive-foreground: #ffffff;
+  --destructive-hover: #951c25;
+  --hover-overlay: rgb(20 32 27 / 0.05);
+  --success: #166534;
+  --warning: #854d0e;
+  --danger: #b4232d;
+  --info: #1d4ed8;
+  --sidebar: #0f2a22;
+  --sidebar-foreground: #f2f4f2;
+  --sidebar-muted: #9db3a9;
+  --sidebar-tile: #1a3830;
+  --sidebar-tile-hover: #21443a;
+  --sidebar-border: rgb(255 255 255 / 0.12);
+  --sidebar-active: rgb(255 255 255 / 0.08);
+  --switch-on: #7cc242;
+  --switch-track-dark: #08150f;
+  --chart-1: #15392d;
+  --chart-2: #7cc242;
+  --chart-3: #d0103f;
+  --chart-4: #1e8c6e;
+  --chart-5: #1f5d78;
+  --scrim: rgb(8 21 15 / 0.5);
+}
+
+/* Dark theme: its own palette, not an inversion */
+.dark {
+  color-scheme: dark;
+  --background: #0b1512;
+  --foreground: #eef2ef;
+  --card: #13211c;
+  --card-foreground: #eef2ef;
+  --popover: #1a2b25;
+  --popover-foreground: #eef2ef;
+  --primary: #9fd3b3;
+  --primary-foreground: #0b1f19;
+  --primary-hover: #b8e0c7;
+  --secondary: #22332d;
+  --secondary-foreground: #e3eae6;
+  --secondary-hover: #2b3e37;
+  --muted: #1b2a24;
+  --muted-foreground: #a9b8b1;
+  --accent: #3a2e25;
+  --accent-foreground: #ebd5c1;
+  --highlight: #f0406a;
+  --highlight-foreground: #24050d;
+  --hero: #5e4634;
+  --hero-foreground: #ffffff;
+  --hero-muted: rgb(255 255 255 / 0.7);
+  --border: #2a3b35;
+  --input: #34463f;
+  --ring: #9fd3b3;
+  --destructive: #f87171;
+  --destructive-foreground: #301416;
+  --destructive-hover: #fa8c8c;
+  --hover-overlay: rgb(238 242 239 / 0.06);
+  --success: #86efac;
+  --warning: #fcd34d;
+  --danger: #fca5a5;
+  --info: #93c5fd;
+  --sidebar: #12241e;
+  --sidebar-foreground: #eef2ef;
+  --sidebar-muted: #a9b8b1;
+  --sidebar-tile: #1b322a;
+  --sidebar-tile-hover: #223d33;
+  --sidebar-border: rgb(255 255 255 / 0.1);
+  --sidebar-active: rgb(159 211 179 / 0.12);
+  --switch-on: #8fd15a;
+  --chart-1: #9fd3b3;
+  --chart-2: #8fd15a;
+  --chart-3: #f0406a;
+  --chart-4: #3fb894;
+  --chart-5: #5ea3c4;
+  --scrim: rgb(0 0 0 / 0.6);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading font-semibold tracking-[-0.01em] text-balance;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
 }

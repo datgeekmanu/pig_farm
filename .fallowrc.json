@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
+  "ignorePatterns": [
+    "recon/**"
+  ],
+  "entry": [
+    "apps/api/resources/js/app.js",
+    "apps/api/resources/css/app.css"
+  ],
+  "ignoreDependencies": [
+    "react",
+    "@tailwindcss/turbopack",
+    "@pig-farm/types"
+  ]
+}
