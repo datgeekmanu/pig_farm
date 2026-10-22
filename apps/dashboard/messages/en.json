@@ -1,0 +1,23 @@
+{
+  "common": {
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "confirm": "Confirm"
+  },
+  "errors": {
+    "generic": "An error occurred",
+    "validation": "Validation error",
+    "server": "Server error",
+    "forbidden": "Action not allowed"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  }
+}
