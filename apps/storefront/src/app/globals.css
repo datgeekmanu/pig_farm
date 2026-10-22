@@ -1,26 +1,217 @@
 @import "tailwindcss";
 
+/* Dark theme is a class on <html> (next-themes) or any subtree (e.g. the weigh-in screen). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Pig Farm Design System tokens. Components consume these, never raw hex. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --background: #f5f4f0;
+  --foreground: #14201b;
+  --card: #ffffff;
+  --card-foreground: #14201b;
+  --popover: #ffffff;
+  --popover-foreground: #14201b;
+  --primary: #15392d;
+  --primary-foreground: #ffffff;
+  --primary-hover: #0f2a22;
+  --secondary: #eae8e2;
+  --secondary-foreground: #26332d;
+  --secondary-hover: #e0ded7;
+  --muted: #efeee9;
+  --muted-foreground: #5b6660;
+  --accent: #efe5da;
+  --accent-foreground: #4a3626;
+  --highlight: #d0103f;
+  --highlight-foreground: #ffffff;
+  --hero: #8c6b50;
+  --hero-foreground: #ffffff;
+  --hero-muted: rgb(255 255 255 / 0.72);
+  --border: #dedcd5;
+  --input: #d6d4cc;
+  --ring: #2c6a52;
+  --destructive: #b4232d;
+  --destructive-foreground: #ffffff;
+  --destructive-hover: #951c25;
+  --hover-overlay: rgb(20 32 27 / 0.05);
+  --success: #166534;
+  --warning: #854d0e;
+  --danger: #b4232d;
+  --info: #1d4ed8;
+  --sidebar: #0f2a22;
+  --sidebar-foreground: #f2f4f2;
+  --sidebar-muted: #9db3a9;
+  --sidebar-tile: #1a3830;
+  --sidebar-tile-hover: #21443a;
+  --switch-on: #7cc242;
+  --chart-1: #15392d;
+  --chart-2: #7cc242;
+  --chart-3: #d0103f;
+  --chart-4: #1e8c6e;
+  --chart-5: #1f5d78;
+  --scrim: rgb(8 21 15 / 0.5);
+  --shadow-popover-value: 0 8px 24px rgb(21 28 37 / 0.12), 0 2px 6px rgb(21 28 37 / 0.06);
+  --shadow-dialog-value: 0 24px 48px rgb(21 28 37 / 0.18), 0 4px 12px rgb(21 28 37 / 0.08);
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #0b1512;
+  --foreground: #eef2ef;
+  --card: #13211c;
+  --card-foreground: #eef2ef;
+  --popover: #1a2b25;
+  --popover-foreground: #eef2ef;
+  --primary: #9fd3b3;
+  --primary-foreground: #0b1f19;
+  --primary-hover: #b8e0c7;
+  --secondary: #22332d;
+  --secondary-foreground: #e3eae6;
+  --secondary-hover: #2b3e37;
+  --muted: #1b2a24;
+  --muted-foreground: #a9b8b1;
+  --accent: #3a2e25;
+  --accent-foreground: #ebd5c1;
+  --highlight: #f0406a;
+  --highlight-foreground: #24050d;
+  --hero: #5e4634;
+  --hero-foreground: #ffffff;
+  --hero-muted: rgb(255 255 255 / 0.7);
+  --border: #2a3b35;
+  --input: #34463f;
+  --ring: #9fd3b3;
+  --destructive: #f87171;
+  --destructive-foreground: #301416;
+  --destructive-hover: #fa8c8c;
+  --hover-overlay: rgb(238 242 239 / 0.06);
+  --success: #86efac;
+  --warning: #fcd34d;
+  --danger: #fca5a5;
+  --info: #93c5fd;
+  --sidebar: #12241e;
+  --sidebar-foreground: #eef2ef;
+  --sidebar-muted: #a9b8b1;
+  --sidebar-tile: #1b322a;
+  --sidebar-tile-hover: #223d33;
+  --switch-on: #8fd15a;
+  --chart-1: #9fd3b3;
+  --chart-2: #8fd15a;
+  --chart-3: #f0406a;
+  --chart-4: #3fb894;
+  --chart-5: #5ea3c4;
+  --scrim: rgb(0 0 0 / 0.6);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-hero: var(--hero);
+  --color-hero-foreground: var(--hero-foreground);
+  --color-hero-muted: var(--hero-muted);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-hover: var(--destructive-hover);
+  --color-hover-overlay: var(--hover-overlay);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-tile: var(--sidebar-tile);
+  --color-sidebar-tile-hover: var(--sidebar-tile-hover);
+  --color-switch-on: var(--switch-on);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-scrim: var(--scrim);
+
+  --font-heading: var(--font-manrope), system-ui, sans-serif;
+  --font-sans: var(--font-nunito-sans), system-ui, sans-serif;
+
+  /* DS type scale (12 → 36) plus the mobile-screen sizes the design uses. */
+  --text-2xs: 11px;
+  --text-2xs--line-height: 14px;
+  --text-meta: 13px;
+  --text-meta--line-height: 18px;
+  --text-lead: 15px;
+  --text-lead--line-height: 22px;
+  --text-figure: 22px;
+  --text-figure--line-height: 28px;
+  --text-title: 28px;
+  --text-title--line-height: 32px;
+  --text-display: 32px;
+  --text-display--line-height: 37px;
+  --text-readout: 64px;
+  --text-readout--line-height: 64px;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 28px;
+
+  --shadow-popover: var(--shadow-popover-value);
+  --shadow-dialog: var(--shadow-dialog-value);
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0ms !important;
+      animation-duration: 0ms !important;
+    }
+  }
 }
