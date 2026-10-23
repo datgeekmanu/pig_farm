@@ -25,6 +25,7 @@ export const metadata: Metadata = {
   description: "Pesées, mortalités, traitements et ventes saisis sur le terrain, même sans réseau.",
   appleWebApp: { capable: true, title: APP_NAME, statusBarStyle: "default" },
   formatDetection: { telephone: false },
+  icons: { apple: "/brand/logo-mark.png" },
 };
 
 export const viewport: Viewport = {

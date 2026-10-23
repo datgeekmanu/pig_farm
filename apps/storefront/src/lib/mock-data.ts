@@ -59,6 +59,7 @@ export const lots: Lot[] = [
       { date: iso(-7), averageKg: 64.2 },
       { date: iso(0), averageKg: 68.4 },
     ],
+    photo: "/images/selective-closeup-shot-pink-pigs-barn.jpg",
     vaccineDueToday: true,
     caregiver: { name: "Ibrahim Ouédraogo", initials: "IO", shift: "06:30 – 14:00", phone: "+22670000000" },
   },
@@ -79,6 +80,7 @@ export const lots: Lot[] = [
       { date: iso(-28), averageKg: 92.1 },
       { date: iso(0), averageKg: 112.0 },
     ],
+    photo: "/images/pigs-grazing-around-farm.jpg",
     vaccineDueToday: false,
     caregiver: { name: "Mariam Sawadogo", initials: "MS", shift: "14:00 – 21:30", phone: "+22670000001" },
   },
@@ -109,6 +111,7 @@ export const sows: Sow[] = [
     ],
     bornAlivePerLitter: 12.3,
     weaningSurvivalPct: 91,
+    photo: "/images/pigs-grazing-around-farm.jpg",
   },
 ];
 
@@ -124,5 +127,6 @@ export const listings: Listing[] = [
     quantity: 10,
     visible: true,
     published: false,
+    photo: "/images/pigs-grazing-around-farm.jpg",
   },
 ];
