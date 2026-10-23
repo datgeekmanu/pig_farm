@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@/components/ui/icon";
 import { ImageSlot } from "@/components/ui/image-slot";
@@ -13,14 +14,14 @@ export default function WelcomePage() {
     <main className="relative flex min-h-dvh flex-col">
       <div className="absolute inset-0">
         <ImageSlot
-          src="/images/welcome.jpg"
+          src="/images/selective-closeup-shot-pink-pigs-barn.jpg"
           alt="Bâtiment d'élevage"
           placeholder="Photo plein cadre : bâtiment d'élevage, lumière naturelle"
         />
       </div>
 
       <section className="relative flex flex-col gap-3.5 rounded-b-2xl bg-background px-7 pt-[max(5rem,calc(env(safe-area-inset-top)+3rem))] pb-7">
-        <span className="font-heading text-3xl font-bold tracking-tight text-primary">Pig Farm</span>
+        <Image src="/brand/logo-forest-notag.png" alt="Pig Farm" width={218} height={52} priority className="-ml-1.5 h-13 w-auto self-start" />
         <h1 className="mt-1.5 text-display font-bold">
           Votre élevage, <span className="text-ring">dans la poche.</span>
         </h1>
