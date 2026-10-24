@@ -23,6 +23,9 @@ build/
 /apps/api/storage/logs/*
 /apps/api/bootstrap/cache/*
 
+# local-only AFAP app recon (screenshots + scrape scripts); never track
+recon/
+
 # misc
 .DS_Store
 *.log
