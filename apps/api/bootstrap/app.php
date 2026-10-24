@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\EnsureFarmRole;
 use App\Http\Middleware\ForceJsonResponse;
 use App\Http\Middleware\ResolveFarm;
 use Illuminate\Foundation\Application;
@@ -29,6 +30,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Attach to authenticated routes to activate farm scoping (after auth:sanctum).
         $middleware->alias([
             'farm' => ResolveFarm::class,
+            'role' => EnsureFarmRole::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

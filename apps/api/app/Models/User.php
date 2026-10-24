@@ -32,6 +32,17 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
+    // The user's role on a farm, or null if they are not a member.
+    public function roleOn(int $farmId): ?string
+    {
+        return $this->farms()->whereKey($farmId)->first()?->pivot->role;
+    }
+
+    public function isOwnerOf(int $farmId): bool
+    {
+        return $this->roleOn($farmId) === 'owner';
+    }
+
     /**
      * Get the attributes that should be cast.
      *
