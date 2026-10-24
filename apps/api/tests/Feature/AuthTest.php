@@ -33,27 +33,34 @@ class AuthTest extends TestCase
         $this->user->farms()->attach($this->farmB, ['role' => 'staff']);
     }
 
-    private function token(): string
+    // An Origin on a stateful domain makes the request run the session stack.
+    private function statefulHeaders(): void
     {
-        return $this->postJson('/api/login', [
-            'email' => 'owner@example.com',
-            'password' => 'password',
-        ])->json('token');
+        $this->withHeaders(['Origin' => 'http://localhost:3000']);
     }
 
-    public function test_login_returns_token_and_user(): void
+    public function test_login_establishes_session_and_grants_access(): void
     {
+        $this->statefulHeaders();
+
         $this->postJson('/api/login', [
             'email' => 'owner@example.com',
             'password' => 'password',
         ])
             ->assertOk()
-            ->assertJsonStructure(['data' => ['id', 'email'], 'token', 'token_type'])
-            ->assertJsonPath('data.email', 'owner@example.com');
+            ->assertJsonPath('data.email', 'owner@example.com')
+            ->assertJsonMissingPath('token'); // cookie session, no bearer token
+
+        // session cookie carried by the test client
+        $this->getJson('/api/me')
+            ->assertOk()
+            ->assertJsonCount(2, 'farms');
     }
 
     public function test_login_fails_with_wrong_password(): void
     {
+        $this->statefulHeaders();
+
         $this->postJson('/api/login', [
             'email' => 'owner@example.com',
             'password' => 'wrong',
@@ -67,16 +74,16 @@ class AuthTest extends TestCase
 
     public function test_me_returns_user_farms_and_active_farm(): void
     {
-        $this->withToken($this->token())->getJson('/api/me')
+        $this->actingAs($this->user)->getJson('/api/me')
             ->assertOk()
             ->assertJsonPath('data.email', 'owner@example.com')
             ->assertJsonCount(2, 'farms')
-            ->assertJsonPath('active_farm_id', $this->farmA->id); // first farm by default
+            ->assertJsonPath('active_farm_id', $this->farmA->id);
     }
 
     public function test_x_farm_id_header_selects_farm(): void
     {
-        $this->withToken($this->token())
+        $this->actingAs($this->user)
             ->withHeader('X-Farm-Id', (string) $this->farmB->id)
             ->getJson('/api/me')
             ->assertOk()
@@ -85,24 +92,26 @@ class AuthTest extends TestCase
 
     public function test_x_farm_id_for_foreign_farm_is_forbidden(): void
     {
-        $foreign = Farm::factory()->create(); // different account, user not a member
+        $foreign = Farm::factory()->create();
 
-        $this->withToken($this->token())
+        $this->actingAs($this->user)
             ->withHeader('X-Farm-Id', (string) $foreign->id)
             ->getJson('/api/me')
             ->assertStatus(403);
     }
 
-    public function test_logout_revokes_current_token(): void
+    public function test_logout_ends_session(): void
     {
-        $token = $this->token();
+        $this->statefulHeaders();
 
-        $this->withToken($token)->postJson('/api/logout')->assertOk();
+        $this->postJson('/api/login', [
+            'email' => 'owner@example.com',
+            'password' => 'password',
+        ])->assertOk();
 
-        // Fresh request = fresh guard resolution (the auth singleton caches the
-        // resolved user across sub-requests within one test).
+        $this->postJson('/api/logout')->assertOk();
         $this->app['auth']->forgetGuards();
 
-        $this->withToken($token)->getJson('/api/me')->assertStatus(401);
+        $this->getJson('/api/me')->assertStatus(401);
     }
 }

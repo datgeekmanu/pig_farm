@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\ForceJsonResponse;
+use App\Http\Middleware\ResolveFarm;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -14,6 +15,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // SPA cookie/session auth: requests from SANCTUM_STATEFUL_DOMAINS run the
+        // web session + CSRF stack, so the SPA authenticates via session cookies
+        // (no Bearer tokens).
+        $middleware->statefulApi();
+
         // API-only backend: treat every api/* request as JSON so auth failures
         // return 401 JSON instead of redirecting to a non-existent web login route.
         $middleware->api(prepend: [
@@ -22,7 +28,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Attach to authenticated routes to activate farm scoping (after auth:sanctum).
         $middleware->alias([
-            'farm' => \App\Http\Middleware\ResolveFarm::class,
+            'farm' => ResolveFarm::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

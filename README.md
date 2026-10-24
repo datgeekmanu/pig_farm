@@ -48,6 +48,15 @@ pnpm test
 Next: #0.4 Next.js dashboard base (auth guard, i18n, shadcn).
 See ISSUES.md for backlog.
 
+### Auth (Sanctum SPA — cookie/session, not tokens)
+Frontend must send credentials and bootstrap CSRF:
+1. `GET /sanctum/csrf-cookie` (sets `XSRF-TOKEN`) — `withCredentials: true` / `fetch(..., {credentials:'include'})`.
+2. `POST /api/login` `{email,password}` with `X-XSRF-TOKEN` header → session cookie.
+3. Authenticated calls (`GET /api/me`, `/api/farms`, …) ride the session cookie.
+4. `POST /api/logout` ends the session.
+
+Requests count as "stateful" (session applied) when their `Origin`/`Referer` is in `SANCTUM_STATEFUL_DOMAINS`. Allowed frontend origins: `FRONTEND_URLS`. CSRF enforced (missing token → 419).
+
 ### Multi-tenancy (farm scoping)
 `account → farm (1..n)`, `user ↔ farm` pivot (`role`). Tenant-owned models use the
 `BelongsToFarm` trait: a **fail-closed** `FarmScope` filters every query by the active

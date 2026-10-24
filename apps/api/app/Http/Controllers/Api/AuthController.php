@@ -6,39 +6,37 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\FarmResource;
 use App\Http\Resources\UserResource;
-use App\Models\User;
 use App\Support\CurrentFarm;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
+    // SPA cookie/session login. Client must GET /sanctum/csrf-cookie first.
     public function login(LoginRequest $request): JsonResource
     {
         $data = $request->validated();
 
-        $user = User::where('email', $data['email'])->first();
-
-        if (! $user || ! Hash::check($data['password'], $user->password)) {
+        if (! Auth::attempt(['email' => $data['email'], 'password' => $data['password']], true)) {
             throw ValidationException::withMessages([
                 'email' => [__('auth.failed')],
             ]);
         }
 
-        $token = $user->createToken($data['device_name'] ?? 'api')->plainTextToken;
+        $request->session()->regenerate();
 
-        return (new UserResource($user))->additional([
-            'token' => $token,
-            'token_type' => 'Bearer',
-        ]);
+        return new UserResource($request->user());
     }
 
     public function logout(Request $request): JsonResponse
     {
-        $request->user()->currentAccessToken()->delete();
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return response()->json(['message' => 'Logged out.']);
     }
