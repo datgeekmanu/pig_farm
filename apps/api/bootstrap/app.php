@@ -7,6 +7,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Middleware\SubstituteBindings;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -32,6 +33,13 @@ return Application::configure(basePath: dirname(__DIR__))
             'farm' => ResolveFarm::class,
             'role' => EnsureFarmRole::class,
         ]);
+
+        // Run farm resolution BEFORE route-model binding, so FarmScope has an active
+        // farm when binding loads scoped models. (Auth already runs earlier.)
+        $middleware->prependToPriorityList(
+            SubstituteBindings::class,
+            ResolveFarm::class,
+        );
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

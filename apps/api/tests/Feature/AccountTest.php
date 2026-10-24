@@ -3,7 +3,9 @@
 namespace Tests\Feature;
 
 use App\Models\Account;
+use App\Models\Batch;
 use App\Models\Farm;
+use App\Models\Pig;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
@@ -68,6 +70,21 @@ class AccountTest extends TestCase
         ])->assertStatus(422);
 
         $this->assertDatabaseHas('accounts', ['id' => $this->account->id]);
+    }
+
+    public function test_reset_farm_wipes_only_active_farm_data(): void
+    {
+        Batch::factory()->create(['farm_id' => $this->farm->id]);
+        Pig::factory()->create(['farm_id' => $this->farm->id]);
+        $otherFarmPig = Pig::factory()->create(); // different farm
+
+        $this->actingAs($this->user)->postJson('/api/account/reset-farm', [
+            'password' => 'password',
+        ])->assertOk();
+
+        $this->assertDatabaseMissing('batches', ['farm_id' => $this->farm->id]);
+        $this->assertDatabaseMissing('pigs', ['farm_id' => $this->farm->id]);
+        $this->assertDatabaseHas('pigs', ['id' => $otherFarmPig->id]); // untouched
     }
 
     public function test_staff_cannot_delete_account(): void

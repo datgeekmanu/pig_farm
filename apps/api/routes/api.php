@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Api\AccountController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BatchController;
 use App\Http\Controllers\Api\FarmController;
 use App\Http\Controllers\Api\GoogleAuthController;
 use App\Http\Controllers\Api\PasswordResetController;
+use App\Http\Controllers\Api\PigController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -18,5 +20,9 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
     Route::get('/farms', [FarmController::class, 'index']);
 
     Route::put('/account/password', [AccountController::class, 'updatePassword']);
+    Route::post('/account/reset-farm', [AccountController::class, 'resetFarm'])->middleware('role:owner');
     Route::delete('/account', [AccountController::class, 'destroy'])->middleware('role:owner');
+
+    Route::apiResource('batches', BatchController::class);
+    Route::apiResource('pigs', PigController::class);
 });
