@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 #[Fillable(['account_id', 'name', 'currency'])]
 class Farm extends Model
 {
+    use HasFactory;
+
     public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class);
