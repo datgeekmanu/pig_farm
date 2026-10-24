@@ -55,6 +55,8 @@ Frontend must send credentials and bootstrap CSRF:
 3. Authenticated calls (`GET /api/me`, `/api/farms`, …) ride the session cookie.
 4. `POST /api/logout` ends the session.
 
+Other auth endpoints: `POST /api/auth/google` (SPA sends Google access_token → session; existing users only, no auto-provision in v1), `POST /api/forgot-password`, `POST /api/reset-password` (link points to `FRONTEND_URL/reset-password?token&email`). Email verification deferred to v2 (no public signup in v1).
+
 Requests count as "stateful" (session applied) when their `Origin`/`Referer` is in `SANCTUM_STATEFUL_DOMAINS`. Allowed frontend origins: `FRONTEND_URLS`. CSRF enforced (missing token → 419).
 
 ### Multi-tenancy (farm scoping)
