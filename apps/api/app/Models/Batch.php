@@ -32,4 +32,9 @@ class Batch extends Model
     {
         return $this->hasMany(Pig::class);
     }
+
+    public function weightRecords(): HasMany
+    {
+        return $this->hasMany(WeightRecord::class);
+    }
 }

@@ -6,6 +6,8 @@ use App\Models\Concerns\BelongsToFarm;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
 class Pig extends Model
 {
@@ -43,5 +45,16 @@ class Pig extends Model
     public function mere(): BelongsTo
     {
         return $this->belongsTo(Pig::class, 'mere_id');
+    }
+
+    public function weights(): HasMany
+    {
+        return $this->hasMany(WeightRecord::class);
+    }
+
+    // Age basis for the growth curve: birth date if known, else arrival date.
+    public function ageReferenceDate(): ?Carbon
+    {
+        return $this->date_naissance ?? $this->date_arrivee;
     }
 }

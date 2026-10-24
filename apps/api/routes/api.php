@@ -5,8 +5,10 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BatchController;
 use App\Http\Controllers\Api\FarmController;
 use App\Http\Controllers\Api\GoogleAuthController;
+use App\Http\Controllers\Api\HerdAnalyticsController;
 use App\Http\Controllers\Api\PasswordResetController;
 use App\Http\Controllers\Api\PigController;
+use App\Http\Controllers\Api\WeightController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -25,4 +27,11 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
 
     Route::apiResource('batches', BatchController::class);
     Route::apiResource('pigs', PigController::class);
+
+    // Weigh-ins + growth analytics
+    Route::get('pigs/{pig}/weights', [WeightController::class, 'index']);
+    Route::post('pigs/{pig}/weights', [WeightController::class, 'store']);
+    Route::get('pigs/{pig}/growth-curve', [HerdAnalyticsController::class, 'pigGrowthCurve']);
+    Route::get('batches/{batch}/weight-stats', [HerdAnalyticsController::class, 'batchWeightStats']);
+    Route::get('batches/{batch}/growth-curve', [HerdAnalyticsController::class, 'batchGrowthCurve']);
 });
