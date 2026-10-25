@@ -23,6 +23,11 @@ use App\Http\Controllers\Api\PigController;
 use App\Http\Controllers\Api\ReproductionController;
 use App\Http\Controllers\Api\SalaryController;
 use App\Http\Controllers\Api\SaleController;
+use App\Http\Controllers\Api\Shop\BuyerAuthController;
+use App\Http\Controllers\Api\Shop\BuyerOrderController;
+use App\Http\Controllers\Api\Shop\CatalogController;
+use App\Http\Controllers\Api\Shop\ProductController as ShopProductController;
+use App\Http\Controllers\Api\Shop\SellerOrderController;
 use App\Http\Controllers\Api\StockItemController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TreatmentController;
@@ -36,6 +41,21 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/auth/google', [GoogleAuthController::class, 'login']);
 Route::post('/forgot-password', [PasswordResetController::class, 'forgot']);
 Route::post('/reset-password', [PasswordResetController::class, 'reset']);
+
+// Public storefront + buyer auth
+Route::get('shop/products', [CatalogController::class, 'index']);
+Route::get('shop/products/{product}', [CatalogController::class, 'show']);
+Route::post('shop/register', [BuyerAuthController::class, 'register']);
+Route::post('shop/login', [BuyerAuthController::class, 'login']);
+
+Route::middleware('auth:buyer')->group(function () {
+    Route::get('shop/me', [BuyerAuthController::class, 'me']);
+    Route::post('shop/logout', [BuyerAuthController::class, 'logout']);
+    Route::get('shop/orders', [BuyerOrderController::class, 'index']);
+    Route::post('shop/orders', [BuyerOrderController::class, 'store']);
+    Route::get('shop/orders/{order}', [BuyerOrderController::class, 'show']);
+    Route::post('shop/orders/{order}/pay', [BuyerOrderController::class, 'pay']);
+});
 
 Route::middleware(['auth:sanctum', 'farm'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -110,6 +130,11 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
 
     // Tutoriels
     Route::get('tutorials', fn () => response()->json(['data' => config('tutorials')]));
+
+    // Storefront — seller side
+    Route::apiResource('products', ShopProductController::class);
+    Route::get('shop/seller/orders', [SellerOrderController::class, 'index']);
+    Route::patch('shop/seller/orders/{order}/status', [SellerOrderController::class, 'updateStatus']);
 
     // Notifications
     Route::get('notifications', [NotificationController::class, 'index']);
