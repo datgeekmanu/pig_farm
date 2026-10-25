@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\GoogleAuthController;
 use App\Http\Controllers\Api\HerdAnalyticsController;
 use App\Http\Controllers\Api\IngredientController;
 use App\Http\Controllers\Api\MortalityController;
+use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PasswordResetController;
 use App\Http\Controllers\Api\PdfController;
 use App\Http\Controllers\Api\PigController;
@@ -109,6 +110,11 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
 
     // Tutoriels
     Route::get('tutorials', fn () => response()->json(['data' => config('tutorials')]));
+
+    // Notifications
+    Route::get('notifications', [NotificationController::class, 'index']);
+    Route::post('notifications/read-all', [NotificationController::class, 'readAll']);
+    Route::patch('notifications/{notification}/read', [NotificationController::class, 'read']);
 
     // PDF documents (branded)
     Route::get('sales/{sale}/receipt', [PdfController::class, 'saleReceipt']);
