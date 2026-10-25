@@ -5,12 +5,16 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BatchController;
 use App\Http\Controllers\Api\BuildingController;
 use App\Http\Controllers\Api\FarmController;
+use App\Http\Controllers\Api\FormulaController;
 use App\Http\Controllers\Api\GoogleAuthController;
 use App\Http\Controllers\Api\HerdAnalyticsController;
+use App\Http\Controllers\Api\IngredientController;
 use App\Http\Controllers\Api\MortalityController;
 use App\Http\Controllers\Api\PasswordResetController;
 use App\Http\Controllers\Api\PigController;
 use App\Http\Controllers\Api\WeightController;
+use App\Http\Resources\NutrientResource;
+use App\Models\Nutrient;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -46,4 +50,11 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
     // Bâtiments + densité
     Route::apiResource('buildings', BuildingController::class);
     Route::get('buildings/{building}/density', [BuildingController::class, 'density']);
+
+    // Formulation
+    Route::get('nutrients', fn () => NutrientResource::collection(Nutrient::all()));
+    Route::apiResource('ingredients', IngredientController::class);
+    Route::post('formulas/analyze', [FormulaController::class, 'analyze']);
+    Route::post('formulas/optimize', [FormulaController::class, 'optimize']);
+    Route::apiResource('formulas', FormulaController::class);
 });
