@@ -3,9 +3,11 @@
 use App\Http\Controllers\Api\AccountController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BatchController;
+use App\Http\Controllers\Api\BuildingController;
 use App\Http\Controllers\Api\FarmController;
 use App\Http\Controllers\Api\GoogleAuthController;
 use App\Http\Controllers\Api\HerdAnalyticsController;
+use App\Http\Controllers\Api\MortalityController;
 use App\Http\Controllers\Api\PasswordResetController;
 use App\Http\Controllers\Api\PigController;
 use App\Http\Controllers\Api\WeightController;
@@ -34,4 +36,14 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
     Route::get('pigs/{pig}/growth-curve', [HerdAnalyticsController::class, 'pigGrowthCurve']);
     Route::get('batches/{batch}/weight-stats', [HerdAnalyticsController::class, 'batchWeightStats']);
     Route::get('batches/{batch}/growth-curve', [HerdAnalyticsController::class, 'batchGrowthCurve']);
+
+    // Mortalité
+    Route::get('mortalities', [MortalityController::class, 'index']);
+    Route::post('mortalities', [MortalityController::class, 'store']);
+    Route::get('mortalities/stats', [MortalityController::class, 'stats']);
+    Route::delete('mortalities/{mortality}', [MortalityController::class, 'destroy']);
+
+    // Bâtiments + densité
+    Route::apiResource('buildings', BuildingController::class);
+    Route::get('buildings/{building}/density', [BuildingController::class, 'density']);
 });

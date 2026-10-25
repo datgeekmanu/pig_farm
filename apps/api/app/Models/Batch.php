@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\BelongsToFarm;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Batch extends Model
@@ -12,7 +13,7 @@ class Batch extends Model
     use BelongsToFarm, HasFactory;
 
     protected $fillable = [
-        'nom', 'batiment_loge', 'date_mise_en_lot', 'effectif_initial',
+        'building_id', 'nom', 'batiment_loge', 'date_mise_en_lot', 'effectif_initial',
         'date_naissance', 'poids_moyen_initial_kg', 'prix_achat_unitaire',
         'status', 'notes',
     ];
@@ -36,5 +37,26 @@ class Batch extends Model
     public function weightRecords(): HasMany
     {
         return $this->hasMany(WeightRecord::class);
+    }
+
+    public function building(): BelongsTo
+    {
+        return $this->belongsTo(Building::class);
+    }
+
+    public function mortalityRecords(): HasMany
+    {
+        return $this->hasMany(MortalityRecord::class);
+    }
+
+    public function deathsCount(): int
+    {
+        return (int) $this->mortalityRecords()->sum('count');
+    }
+
+    // Live head = initial minus recorded deaths. (Sales deducted later, EPIC 6.)
+    public function currentHead(): int
+    {
+        return max(0, $this->effectif_initial - $this->deathsCount());
     }
 }
