@@ -12,6 +12,8 @@ use App\Http\Controllers\Api\IngredientController;
 use App\Http\Controllers\Api\MortalityController;
 use App\Http\Controllers\Api\PasswordResetController;
 use App\Http\Controllers\Api\PigController;
+use App\Http\Controllers\Api\StockItemController;
+use App\Http\Controllers\Api\TreatmentController;
 use App\Http\Controllers\Api\WeightController;
 use App\Http\Resources\NutrientResource;
 use App\Models\Nutrient;
@@ -57,4 +59,12 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
     Route::post('formulas/analyze', [FormulaController::class, 'analyze']);
     Route::post('formulas/optimize', [FormulaController::class, 'optimize']);
     Route::apiResource('formulas', FormulaController::class);
+
+    // Stocks (alimentation + vétérinaire) + movements
+    Route::apiResource('stock-items', StockItemController::class)->parameters(['stock-items' => 'stockItem']);
+    Route::get('stock-items/{stockItem}/movements', [StockItemController::class, 'movements']);
+    Route::post('stock-items/{stockItem}/movements', [StockItemController::class, 'storeMovement']);
+
+    // Traitements (lot / individuel / prophylaxie)
+    Route::apiResource('treatments', TreatmentController::class);
 });
