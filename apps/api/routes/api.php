@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\BreedingController;
 use App\Http\Controllers\Api\BuildingController;
 use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\FarmController;
+use App\Http\Controllers\Api\FarmSettingsController;
 use App\Http\Controllers\Api\FarrowingController;
 use App\Http\Controllers\Api\FinanceController;
 use App\Http\Controllers\Api\FormulaController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\Api\ReproductionController;
 use App\Http\Controllers\Api\SalaryController;
 use App\Http\Controllers\Api\SaleController;
 use App\Http\Controllers\Api\StockItemController;
+use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TreatmentController;
 use App\Http\Controllers\Api\WeaningController;
 use App\Http\Controllers\Api\WeightController;
@@ -91,4 +93,19 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
     Route::apiResource('sales', SaleController::class);
     Route::apiResource('expenses', ExpenseController::class);
     Route::apiResource('salaries', SalaryController::class);
+
+    // Farm settings
+    Route::get('farm', [FarmSettingsController::class, 'show']);
+    Route::put('farm', [FarmSettingsController::class, 'update'])->middleware('role:owner');
+    Route::post('farm/logo', [FarmSettingsController::class, 'uploadLogo'])->middleware('role:owner');
+    Route::get('farm/notifications', [FarmSettingsController::class, 'notifications']);
+    Route::put('farm/notifications', [FarmSettingsController::class, 'updateNotifications'])->middleware('role:owner');
+
+    // Team
+    Route::get('farm/members', [TeamController::class, 'index']);
+    Route::post('farm/members', [TeamController::class, 'store'])->middleware('role:owner');
+    Route::delete('farm/members/{user}', [TeamController::class, 'destroy'])->middleware('role:owner');
+
+    // Tutoriels
+    Route::get('tutorials', fn () => response()->json(['data' => config('tutorials')]));
 });
