@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
 use App\Models\Concerns\BelongsToFarm;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Batch extends Model
 {
-    use BelongsToFarm, HasFactory;
+    use Auditable, BelongsToFarm, HasFactory;
 
     protected $fillable = [
         'building_id', 'nom', 'batiment_loge', 'date_mise_en_lot', 'effectif_initial',

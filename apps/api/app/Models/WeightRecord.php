@@ -11,7 +11,7 @@ class WeightRecord extends Model
 {
     use BelongsToFarm, HasFactory;
 
-    protected $fillable = ['pig_id', 'batch_id', 'weight_kg', 'weighed_on', 'notes'];
+    protected $fillable = ['pig_id', 'batch_id', 'weight_kg', 'weighed_on', 'notes', 'client_uuid'];
 
     protected function casts(): array
     {

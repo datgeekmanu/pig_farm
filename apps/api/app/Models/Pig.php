@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
 use App\Models\Concerns\BelongsToFarm;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ use Illuminate\Support\Carbon;
 
 class Pig extends Model
 {
-    use BelongsToFarm, HasFactory;
+    use Auditable, BelongsToFarm, HasFactory;
 
     protected $fillable = [
         'batch_id', 'identifiant', 'nom', 'sexe', 'categorie',

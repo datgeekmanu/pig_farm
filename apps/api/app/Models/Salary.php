@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
 use App\Models\Concerns\BelongsToFarm;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Salary extends Model
 {
-    use BelongsToFarm, HasFactory;
+    use Auditable, BelongsToFarm, HasFactory;
 
     protected $fillable = ['nom_ouvrier', 'poste', 'montant', 'date_paiement', 'mois_concerne', 'notes'];
 

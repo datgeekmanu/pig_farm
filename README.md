@@ -43,6 +43,19 @@ pnpm lint
 pnpm test
 ```
 
+## Production (API)
+```bash
+php artisan migrate --force
+php artisan storage:link           # serve farm logos / product photos
+php artisan horizon                # queue worker (supervisor)
+# scheduler (cron): * * * * * php artisan schedule:run   # runs notifications:generate daily
+```
+- Offline field sync: `POST /api/sync` (idempotent by `client_uuid`).
+- Audit trail: mutations on Batch/Pig/Sale/Expense/Salary/Treatment/Order → `audit_logs` (`GET /api/audit-logs`, owner).
+- Auth endpoints are rate-limited (`throttle:10,1`).
+- CI: `.github/workflows/ci.yml` runs Pint + PHPUnit on push/PR.
+- Monitoring/backups (ops): add `sentry/sentry-laravel` (DSN via env) and schedule `pg_dump` + `spatie/laravel-backup`.
+
 ## Status
 #0.1 scaffold + #0.2 (Sanctum, Postgres, Redis, Horizon, Scramble, docker-compose) + #0.3 (farm-scoped schema) done.
 Next: #0.4 Next.js dashboard base (auth guard, i18n, shadcn).

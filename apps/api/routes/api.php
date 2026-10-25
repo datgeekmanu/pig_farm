@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AccountController;
+use App\Http\Controllers\Api\AuditLogController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BandController;
 use App\Http\Controllers\Api\BatchController;
@@ -29,6 +30,7 @@ use App\Http\Controllers\Api\Shop\CatalogController;
 use App\Http\Controllers\Api\Shop\ProductController as ShopProductController;
 use App\Http\Controllers\Api\Shop\SellerOrderController;
 use App\Http\Controllers\Api\StockItemController;
+use App\Http\Controllers\Api\SyncController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TreatmentController;
 use App\Http\Controllers\Api\WeaningController;
@@ -37,16 +39,19 @@ use App\Http\Resources\NutrientResource;
 use App\Models\Nutrient;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/auth/google', [GoogleAuthController::class, 'login']);
-Route::post('/forgot-password', [PasswordResetController::class, 'forgot']);
-Route::post('/reset-password', [PasswordResetController::class, 'reset']);
+// Rate-limited auth endpoints (brute-force protection).
+Route::middleware('throttle:10,1')->group(function () {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/auth/google', [GoogleAuthController::class, 'login']);
+    Route::post('/forgot-password', [PasswordResetController::class, 'forgot']);
+    Route::post('/reset-password', [PasswordResetController::class, 'reset']);
+    Route::post('shop/register', [BuyerAuthController::class, 'register']);
+    Route::post('shop/login', [BuyerAuthController::class, 'login']);
+});
 
-// Public storefront + buyer auth
+// Public storefront catalog
 Route::get('shop/products', [CatalogController::class, 'index']);
 Route::get('shop/products/{product}', [CatalogController::class, 'show']);
-Route::post('shop/register', [BuyerAuthController::class, 'register']);
-Route::post('shop/login', [BuyerAuthController::class, 'login']);
 
 Route::middleware('auth:buyer')->group(function () {
     Route::get('shop/me', [BuyerAuthController::class, 'me']);
@@ -135,6 +140,10 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
     Route::apiResource('products', ShopProductController::class);
     Route::get('shop/seller/orders', [SellerOrderController::class, 'index']);
     Route::patch('shop/seller/orders/{order}/status', [SellerOrderController::class, 'updateStatus']);
+
+    // Offline field sync + audit
+    Route::post('sync', [SyncController::class, 'sync']);
+    Route::get('audit-logs', [AuditLogController::class, 'index'])->middleware('role:owner');
 
     // Notifications
     Route::get('notifications', [NotificationController::class, 'index']);

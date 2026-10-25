@@ -11,7 +11,7 @@ class MortalityRecord extends Model
 {
     use BelongsToFarm, HasFactory;
 
-    protected $fillable = ['pig_id', 'batch_id', 'died_on', 'cause', 'count', 'weight_kg', 'notes'];
+    protected $fillable = ['pig_id', 'batch_id', 'died_on', 'cause', 'count', 'weight_kg', 'notes', 'client_uuid'];
 
     protected function casts(): array
     {
