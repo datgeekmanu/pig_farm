@@ -8,10 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-#[Fillable(['account_id', 'name', 'currency'])]
+#[Fillable(['account_id', 'name', 'currency', 'seuil_rentabilite'])]
 class Farm extends Model
 {
     use HasFactory;
+
+    protected function casts(): array
+    {
+        return ['seuil_rentabilite' => 'integer'];
+    }
 
     public function account(): BelongsTo
     {

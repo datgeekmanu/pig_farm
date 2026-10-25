@@ -6,8 +6,10 @@ use App\Http\Controllers\Api\BandController;
 use App\Http\Controllers\Api\BatchController;
 use App\Http\Controllers\Api\BreedingController;
 use App\Http\Controllers\Api\BuildingController;
+use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\FarmController;
 use App\Http\Controllers\Api\FarrowingController;
+use App\Http\Controllers\Api\FinanceController;
 use App\Http\Controllers\Api\FormulaController;
 use App\Http\Controllers\Api\GoogleAuthController;
 use App\Http\Controllers\Api\HerdAnalyticsController;
@@ -16,6 +18,8 @@ use App\Http\Controllers\Api\MortalityController;
 use App\Http\Controllers\Api\PasswordResetController;
 use App\Http\Controllers\Api\PigController;
 use App\Http\Controllers\Api\ReproductionController;
+use App\Http\Controllers\Api\SalaryController;
+use App\Http\Controllers\Api\SaleController;
 use App\Http\Controllers\Api\StockItemController;
 use App\Http\Controllers\Api\TreatmentController;
 use App\Http\Controllers\Api\WeaningController;
@@ -81,4 +85,10 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
     Route::apiResource('farrowings', FarrowingController::class);
     Route::apiResource('weanings', WeaningController::class);
     Route::apiResource('bands', BandController::class);
+
+    // Finances
+    Route::get('finances/overview', [FinanceController::class, 'overview']);
+    Route::apiResource('sales', SaleController::class);
+    Route::apiResource('expenses', ExpenseController::class);
+    Route::apiResource('salaries', SalaryController::class);
 });

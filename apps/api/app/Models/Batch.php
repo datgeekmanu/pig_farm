@@ -49,14 +49,24 @@ class Batch extends Model
         return $this->hasMany(MortalityRecord::class);
     }
 
+    public function saleItems(): HasMany
+    {
+        return $this->hasMany(SaleItem::class);
+    }
+
     public function deathsCount(): int
     {
         return (int) $this->mortalityRecords()->sum('count');
     }
 
-    // Live head = initial minus recorded deaths. (Sales deducted later, EPIC 6.)
+    public function soldCount(): int
+    {
+        return (int) $this->saleItems()->sum('quantite');
+    }
+
+    // Live head = initial minus recorded deaths and sales.
     public function currentHead(): int
     {
-        return max(0, $this->effectif_initial - $this->deathsCount());
+        return max(0, $this->effectif_initial - $this->deathsCount() - $this->soldCount());
     }
 }
