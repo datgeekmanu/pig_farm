@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\Api\AccountController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BandController;
 use App\Http\Controllers\Api\BatchController;
+use App\Http\Controllers\Api\BreedingController;
 use App\Http\Controllers\Api\BuildingController;
 use App\Http\Controllers\Api\FarmController;
+use App\Http\Controllers\Api\FarrowingController;
 use App\Http\Controllers\Api\FormulaController;
 use App\Http\Controllers\Api\GoogleAuthController;
 use App\Http\Controllers\Api\HerdAnalyticsController;
@@ -12,8 +15,10 @@ use App\Http\Controllers\Api\IngredientController;
 use App\Http\Controllers\Api\MortalityController;
 use App\Http\Controllers\Api\PasswordResetController;
 use App\Http\Controllers\Api\PigController;
+use App\Http\Controllers\Api\ReproductionController;
 use App\Http\Controllers\Api\StockItemController;
 use App\Http\Controllers\Api\TreatmentController;
+use App\Http\Controllers\Api\WeaningController;
 use App\Http\Controllers\Api\WeightController;
 use App\Http\Resources\NutrientResource;
 use App\Models\Nutrient;
@@ -67,4 +72,13 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
 
     // Traitements (lot / individuel / prophylaxie)
     Route::apiResource('treatments', TreatmentController::class);
+
+    // Reproduction
+    Route::get('reproduction/empty-sows', [ReproductionController::class, 'emptySows']);
+    Route::get('reproduction/gtt', [ReproductionController::class, 'gtt']);
+    Route::get('pigs/{pig}/breeding-history', [ReproductionController::class, 'breedingHistory']);
+    Route::apiResource('breedings', BreedingController::class);
+    Route::apiResource('farrowings', FarrowingController::class);
+    Route::apiResource('weanings', WeaningController::class);
+    Route::apiResource('bands', BandController::class);
 });
