@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\HerdAnalyticsController;
 use App\Http\Controllers\Api\IngredientController;
 use App\Http\Controllers\Api\MortalityController;
 use App\Http\Controllers\Api\PasswordResetController;
+use App\Http\Controllers\Api\PdfController;
 use App\Http\Controllers\Api\PigController;
 use App\Http\Controllers\Api\ReproductionController;
 use App\Http\Controllers\Api\SalaryController;
@@ -108,4 +109,11 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
 
     // Tutoriels
     Route::get('tutorials', fn () => response()->json(['data' => config('tutorials')]));
+
+    // PDF documents (branded)
+    Route::get('sales/{sale}/receipt', [PdfController::class, 'saleReceipt']);
+    Route::get('batches/{batch}/summary', [PdfController::class, 'batchSummary']);
+    Route::get('formulas/{formula}/sheet', [PdfController::class, 'formulaSheet']);
+    Route::get('finances/report', [PdfController::class, 'financeReport']);
+    Route::get('reproduction/gtt-report', [PdfController::class, 'gttReport']);
 });
