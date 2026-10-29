@@ -16,9 +16,11 @@ ISSUES.md      Full issue backlog (12 epics)
 ```
 
 ## Prereqs
+
 node ≥20, pnpm 11, php 8.5, composer 2.8.
 
 ## Dev
+
 ```bash
 docker compose up -d         # postgres :5432, redis :6380
 
@@ -37,37 +39,38 @@ Services: Postgres + Redis via `docker-compose.yml` (redis on host **6380** to a
 a collision with another local redis). API runs on host against the exposed ports.
 
 ## Build / lint / test
+
 ```bash
 pnpm build    # turbo: all JS apps
 pnpm lint
 pnpm test
 ```
 
-<<<<<<< HEAD
-=======
 ## Production (API)
+
 ```bash
 php artisan migrate --force
 php artisan storage:link           # serve farm logos / product photos
 php artisan horizon                # queue worker (supervisor)
 # scheduler (cron): * * * * * php artisan schedule:run   # runs notifications:generate daily
 ```
+
 - Offline field sync: `POST /api/sync` (idempotent by `client_uuid`).
 - Audit trail: mutations on Batch/Pig/Sale/Expense/Salary/Treatment/Order → `audit_logs` (`GET /api/audit-logs`, owner).
 - Auth endpoints are rate-limited (`throttle:10,1`).
 - CI: `.github/workflows/ci.yml` runs Pint + PHPUnit on push/PR.
 - Monitoring/backups (ops): add `sentry/sentry-laravel` (DSN via env) and schedule `pg_dump` + `spatie/laravel-backup`.
 
->>>>>>> 1fda1c78240d0fb09cb6ea7635de82775d25c3e5
 ## Status
+
 #0.1 scaffold + #0.2 (Sanctum, Postgres, Redis, Horizon, Scramble, docker-compose) + #0.3 (farm-scoped schema) done.
 Next: #0.4 Next.js dashboard base (auth guard, i18n, shadcn).
 See ISSUES.md for backlog.
 
-<<<<<<< HEAD
-=======
 ### Auth (Sanctum SPA — cookie/session, not tokens)
+
 Frontend must send credentials and bootstrap CSRF:
+
 1. `GET /sanctum/csrf-cookie` (sets `XSRF-TOKEN`) — `withCredentials: true` / `fetch(..., {credentials:'include'})`.
 2. `POST /api/login` `{email,password}` with `X-XSRF-TOKEN` header → session cookie.
 3. Authenticated calls (`GET /api/me`, `/api/farms`, …) ride the session cookie.
@@ -77,8 +80,8 @@ Other auth endpoints: `POST /api/auth/google` (SPA sends Google access_token →
 
 Requests count as "stateful" (session applied) when their `Origin`/`Referer` is in `SANCTUM_STATEFUL_DOMAINS`. Allowed frontend origins: `FRONTEND_URLS`. CSRF enforced (missing token → 419).
 
->>>>>>> 1fda1c78240d0fb09cb6ea7635de82775d25c3e5
 ### Multi-tenancy (farm scoping)
+
 `account → farm (1..n)`, `user ↔ farm` pivot (`role`). Tenant-owned models use the
 `BelongsToFarm` trait: a **fail-closed** `FarmScope` filters every query by the active
 farm and throws if none is set. `CurrentFarm` (request-scoped singleton) holds the
