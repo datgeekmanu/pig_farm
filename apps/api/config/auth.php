@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Buyer;
 use App\Models\User;
 
 return [
@@ -42,6 +43,15 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+<<<<<<< HEAD
+=======
+
+        // Storefront buyers authenticate with Sanctum bearer tokens.
+        'buyer' => [
+            'driver' => 'sanctum',
+            'provider' => 'buyers',
+        ],
+>>>>>>> 1fda1c78240d0fb09cb6ea7635de82775d25c3e5
     ],
 
     /*
@@ -67,10 +77,17 @@ return [
             'model' => env('AUTH_MODEL', User::class),
         ],
 
+<<<<<<< HEAD
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+=======
+        'buyers' => [
+            'driver' => 'eloquent',
+            'model' => Buyer::class,
+        ],
+>>>>>>> 1fda1c78240d0fb09cb6ea7635de82775d25c3e5
     ],
 
     /*
