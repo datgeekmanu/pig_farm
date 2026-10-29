@@ -22,7 +22,7 @@ class InviteMemberRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', Password::defaults()],
-            'role' => ['required', Rule::in(['owner', 'staff'])],
+            'role' => ['required', Rule::in(['owner', 'staff', 'worker'])],
         ];
     }
 }

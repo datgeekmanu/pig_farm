@@ -32,7 +32,7 @@ class TeamTest extends TestCase
     {
         $this->actingAs($this->owner)->postJson('/api/farm/members', [
             'name' => 'Kossi', 'email' => 'kossi@f.test', 'password' => 'password123', 'role' => 'staff',
-        ])->assertStatus(201)->assertJsonPath('data.role', 'staff');
+        ])->assertStatus(201)->assertJsonPath('data.role', 'worker'); // staff normalised to worker for FE
 
         $this->assertDatabaseHas('users', ['email' => 'kossi@f.test', 'account_id' => $this->account->id]);
         $this->assertDatabaseHas('farm_user', ['farm_id' => $this->farm->id, 'role' => 'staff']);

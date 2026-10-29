@@ -18,7 +18,7 @@ class TeamMemberResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'role' => $this->pivot->role,
+            'role' => $this->pivot->role === 'owner' ? 'owner' : 'worker',
             'since' => $this->pivot->created_at?->toDateString(),
         ];
     }

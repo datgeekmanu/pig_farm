@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\FormulaController;
 use App\Http\Controllers\Api\GoogleAuthController;
 use App\Http\Controllers\Api\HerdAnalyticsController;
 use App\Http\Controllers\Api\IngredientController;
+use App\Http\Controllers\Api\LotController;
 use App\Http\Controllers\Api\MortalityController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PasswordResetController;
@@ -73,6 +74,14 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
 
     Route::apiResource('batches', BatchController::class);
     Route::apiResource('pigs', PigController::class);
+
+    // Field-app aliases + lot-level operations (lots == batches)
+    Route::get('user', [AuthController::class, 'me']); // alias of /me
+    Route::apiResource('lots', BatchController::class)->parameters(['lots' => 'batch']);
+    Route::get('lots/{batch}/weighings', [LotController::class, 'weighings']);
+    Route::post('lots/{batch}/weighings', [LotController::class, 'storeWeighing']);
+    Route::get('lots/{batch}/feed', [LotController::class, 'feedIntakes']);
+    Route::post('lots/{batch}/feed', [LotController::class, 'storeFeed']);
 
     // Weigh-ins + growth analytics
     Route::get('pigs/{pig}/weights', [WeightController::class, 'index']);

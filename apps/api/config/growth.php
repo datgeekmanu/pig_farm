@@ -23,4 +23,13 @@ return [
         'croissance' => [8, 16],
         'finition' => [16, 24],
     ],
+
+    // Phase derived from average live weight (kg) — matches the field app labels.
+    // Each entry: live weight below `max` (kg) → `label`; last entry has null max.
+    'weight_phases' => [
+        ['max' => 15, 'label' => 'Post-sevrage'],
+        ['max' => 30, 'label' => 'Démarrage'],
+        ['max' => 70, 'label' => 'Croissance'],
+        ['max' => null, 'label' => 'Finition'],
+    ],
 ];

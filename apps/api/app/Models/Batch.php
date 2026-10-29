@@ -55,6 +55,16 @@ class Batch extends Model
         return $this->hasMany(SaleItem::class);
     }
 
+    public function lotWeighings(): HasMany
+    {
+        return $this->hasMany(LotWeighing::class);
+    }
+
+    public function feedIntakes(): HasMany
+    {
+        return $this->hasMany(FeedIntake::class);
+    }
+
     public function deathsCount(): int
     {
         return (int) $this->mortalityRecords()->sum('count');
