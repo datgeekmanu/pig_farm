@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\BuildingController;
 use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\FarmController;
 use App\Http\Controllers\Api\FarmSettingsController;
+use App\Http\Controllers\Api\FarmSummaryController;
 use App\Http\Controllers\Api\FarrowingController;
 use App\Http\Controllers\Api\FinanceController;
 use App\Http\Controllers\Api\FormulaController;
@@ -30,6 +31,7 @@ use App\Http\Controllers\Api\Shop\BuyerOrderController;
 use App\Http\Controllers\Api\Shop\CatalogController;
 use App\Http\Controllers\Api\Shop\ProductController as ShopProductController;
 use App\Http\Controllers\Api\Shop\SellerOrderController;
+use App\Http\Controllers\Api\SowController;
 use App\Http\Controllers\Api\StockItemController;
 use App\Http\Controllers\Api\SyncController;
 use App\Http\Controllers\Api\TeamController;
@@ -82,6 +84,12 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
     Route::post('lots/{batch}/weighings', [LotController::class, 'storeWeighing']);
     Route::get('lots/{batch}/feed', [LotController::class, 'feedIntakes']);
     Route::post('lots/{batch}/feed', [LotController::class, 'storeFeed']);
+    Route::get('lots/{batch}/events', [LotController::class, 'events']);
+
+    // Sows projection (field app) + farm summary
+    Route::get('sows', [SowController::class, 'index']);
+    Route::get('sows/{pig}', [SowController::class, 'show']);
+    Route::get('farm/summary', [FarmSummaryController::class, 'show']);
 
     // Weigh-ins + growth analytics
     Route::get('pigs/{pig}/weights', [WeightController::class, 'index']);

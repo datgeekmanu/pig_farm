@@ -50,6 +50,11 @@ class Batch extends Model
         return $this->hasMany(MortalityRecord::class);
     }
 
+    public function treatments(): HasMany
+    {
+        return $this->hasMany(Treatment::class);
+    }
+
     public function saleItems(): HasMany
     {
         return $this->hasMany(SaleItem::class);

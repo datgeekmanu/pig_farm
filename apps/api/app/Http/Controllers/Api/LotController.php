@@ -21,6 +21,31 @@ class LotController extends Controller
         return response()->json(['data' => $batch->lotWeighings()->orderBy('weighed_on')->get()]);
     }
 
+    // Unified lot timeline (weigh-ins, deaths, treatments, sales), newest first.
+    public function events(Batch $batch): JsonResponse
+    {
+        $events = collect();
+
+        foreach ($batch->lotWeighings as $w) {
+            $events->push(['icon' => 'weight-scale', 'date' => $w->weighed_on->toDateString(),
+                'text' => "Pesée : {$w->avg_weight_kg} kg de moyenne".($w->count ? " ({$w->count} animaux)" : '')]);
+        }
+        foreach ($batch->mortalityRecords as $m) {
+            $events->push(['icon' => 'skull-crossbones', 'date' => $m->died_on->toDateString(),
+                'text' => "{$m->count} mort(s)".($m->cause ? " · {$m->cause}" : '')]);
+        }
+        foreach ($batch->treatments as $t) {
+            $events->push(['icon' => 'syringe', 'date' => $t->date->toDateString(),
+                'text' => $t->produit.($t->dose ? " · {$t->dose}" : '')]);
+        }
+        foreach ($batch->saleItems()->with('sale')->get() as $i) {
+            $events->push(['icon' => 'sack-dollar', 'date' => $i->sale?->date_vente?->toDateString(),
+                'text' => "{$i->quantite} animaux vendus"]);
+        }
+
+        return response()->json(['data' => $events->sortByDesc('date')->values()]);
+    }
+
     public function storeWeighing(StoreLotWeighingRequest $batchRequest, Batch $batch): JsonResponse
     {
         $data = $batchRequest->validated();
