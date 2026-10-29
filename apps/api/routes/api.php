@@ -29,11 +29,13 @@ use App\Http\Controllers\Api\SaleController;
 use App\Http\Controllers\Api\Shop\BuyerAuthController;
 use App\Http\Controllers\Api\Shop\BuyerOrderController;
 use App\Http\Controllers\Api\Shop\CatalogController;
+use App\Http\Controllers\Api\Shop\ListingController;
 use App\Http\Controllers\Api\Shop\ProductController as ShopProductController;
 use App\Http\Controllers\Api\Shop\SellerOrderController;
 use App\Http\Controllers\Api\SowController;
 use App\Http\Controllers\Api\StockItemController;
 use App\Http\Controllers\Api\SyncController;
+use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TreatmentController;
 use App\Http\Controllers\Api\WeaningController;
@@ -121,7 +123,12 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
     Route::post('stock-items/{stockItem}/movements', [StockItemController::class, 'storeMovement']);
 
     // Traitements (lot / individuel / prophylaxie)
+    Route::get('treatments/upcoming', [TreatmentController::class, 'upcoming']);
     Route::apiResource('treatments', TreatmentController::class);
+
+    // "À faire aujourd'hui" completion state
+    Route::get('tasks/done', [TaskController::class, 'done']);
+    Route::post('tasks/done', [TaskController::class, 'markDone']);
 
     // Reproduction
     Route::get('reproduction/empty-sows', [ReproductionController::class, 'emptySows']);
@@ -154,6 +161,10 @@ Route::middleware(['auth:sanctum', 'farm'])->group(function () {
     Route::get('tutorials', fn () => response()->json(['data' => config('tutorials')]));
 
     // Storefront — seller side
+    Route::get('listings', [ListingController::class, 'index']);
+    Route::post('listings', [ListingController::class, 'store']);
+    Route::match(['put', 'patch'], 'listings/{product}', [ListingController::class, 'update']);
+    Route::delete('listings/{product}', [ListingController::class, 'destroy']);
     Route::apiResource('products', ShopProductController::class);
     Route::get('shop/seller/orders', [SellerOrderController::class, 'index']);
     Route::patch('shop/seller/orders/{order}/status', [SellerOrderController::class, 'updateStatus']);

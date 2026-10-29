@@ -14,16 +14,18 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'farm_id', 'batch_id', 'type', 'nom', 'description', 'unit',
-        'prix', 'stock_qty', 'is_published', 'photo_path',
+        'farm_id', 'batch_id', 'type', 'category', 'nom', 'description', 'unit',
+        'prix', 'market_price', 'stock_qty', 'is_published', 'visible', 'photo_path',
     ];
 
     protected function casts(): array
     {
         return [
             'prix' => 'integer',
+            'market_price' => 'integer',
             'stock_qty' => 'decimal:2',
             'is_published' => 'boolean',
+            'visible' => 'boolean',
         ];
     }
 

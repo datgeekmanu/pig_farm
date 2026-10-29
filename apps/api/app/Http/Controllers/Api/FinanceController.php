@@ -14,10 +14,12 @@ class FinanceController extends Controller
     // Finance dashboard: CA / dépenses / bénéfice brut + monthly series + category breakdown.
     public function overview(Request $request): JsonResponse
     {
-        $summary = FinanceSummary::compute(
-            $request->date('from')?->toDateString(),
-            $request->date('to')?->toDateString(),
-        );
+        // ?months=n is a shortcut for "the last n calendar months".
+        $from = $request->filled('months')
+            ? now()->subMonths((int) $request->integer('months') - 1)->startOfMonth()->toDateString()
+            : $request->date('from')?->toDateString();
+
+        $summary = FinanceSummary::compute($from, $request->date('to')?->toDateString());
 
         $farm = Farm::find(app(CurrentFarm::class)->id());
         $summary['seuil_rentabilite'] = $farm?->seuil_rentabilite;

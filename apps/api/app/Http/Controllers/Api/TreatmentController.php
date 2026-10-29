@@ -12,11 +12,43 @@ use App\Support\StockLedger;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
 class TreatmentController extends Controller
 {
+    // Upcoming reminders (date_rappel) for the "Santé" schedule — with urgency.
+    public function upcoming(): JsonResponse
+    {
+        $today = Carbon::today();
+
+        $rows = Treatment::whereNotNull('date_rappel')->whereDate('date_rappel', '>=', $today)
+            ->with(['batch:id,nom', 'pig:id,identifiant'])
+            ->orderBy('date_rappel')->limit(30)->get()
+            ->map(function (Treatment $t) use ($today) {
+                $inDays = (int) $today->diffInDays($t->date_rappel, false);
+
+                return [
+                    'inDays' => $inDays,
+                    'product' => $t->produit,
+                    'target' => $t->batch?->nom ?? $t->pig?->identifiant ?? '—',
+                    'type' => ucfirst($t->scope),
+                    'dose' => $t->dose,
+                    'caregiver' => $t->soignant,
+                    'urgency' => $inDays <= 1 ? 'danger' : ($inDays <= 3 ? 'warning' : 'neutral'),
+                    'tag' => match (true) {
+                        $inDays === 0 => "Aujourd'hui",
+                        $inDays === 1 => 'Demain',
+                        $inDays < 7 => "Dans {$inDays} j",
+                        default => 'Planifié',
+                    },
+                ];
+            });
+
+        return response()->json(['data' => $rows]);
+    }
+
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = Treatment::query()
